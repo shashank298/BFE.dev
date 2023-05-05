@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BFE.dev</title>
+</head>
+
+<body>
+    <h1>Hellooo..</h1>
+    <script>
+        let create = (info) => {
+            return new Promise(function (resolve, reject) {
+                let gfgData = document.createElement('script');
+                gfgData.src = info;
+                gfgData.async = false;
+                gfgData.onload = () => {
+                    resolve(info);
+                };
+                gfgData.onerror = () => {
+                    reject(info);
+                };
+                document.body.appendChild(gfgData);
+            });
+        };
+        scripts = [
+            "./probs/day-1.js",
+        ];
+        let promiseData = [];
+        scripts.forEach(function (info) {
+            promiseData.push(create(info));
+        });
+        Promise.all(promiseData).then(function () {
+            console.log('The required scripts are loaded successfully!');
+        }).catch(function (gfgData) {
+            console.log(gfgData + ' failed to load!');
+        });
+    </script>
+</body>
+
+</html>
