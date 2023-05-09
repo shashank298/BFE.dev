@@ -151,6 +151,5 @@ Object.setPrototypeOf(Bird3.prototype,Animal3.prototype)
 
 const crow = new Bird3(2)
 console.log(crow)
-crow.fly()
-crow.walk()
-
+// crow.fly()
+// crow.walk()
