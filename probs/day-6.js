@@ -70,7 +70,7 @@ function timer(initialValue=0, steps=1){
     
     
     const time = timer()
-    time.start()
+    // time.start()
     
     // setTimeout(()=>{
     //     time.stop()
@@ -230,4 +230,4 @@ const getComputedColor = (color) => {
   };
   
   const root = document.getElementById("root");
-  console.log(findElementByColor(root, "black"));
+  // console.log(findElementByColor(root, "black"));
