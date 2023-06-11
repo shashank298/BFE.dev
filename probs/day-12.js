@@ -1,4 +1,4 @@
-const input = "Hello world. Kanna";
+// const input = "Hello world. Kanna";
 
 function removeDuplicates(input) {
   let lookup = {};

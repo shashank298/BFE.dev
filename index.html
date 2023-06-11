@@ -6,10 +6,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BFE.dev</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+        #root{
+            border: 4px solid tomato;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Hellooo..</h1>
+    <div id="root"></div>
     <script>
         let create = (info) => {
             return new Promise(function (resolve, reject) {
@@ -40,12 +57,14 @@
             "./probs/day-12.js",
             "./probs/day-13.js",
             "./probs/day-14.js",
+            "./probs/day-15.js",
+            "./probs/day-16.js",
         ];
         let promiseData = [];
         scripts.forEach(function (info) {
             promiseData.push(create(info));
         });
-        Promise.all(promiseData).then(function () {
+        Promise.allSettled(promiseData).then(function () {
             console.log('The required scripts are loaded successfully!');
         }).catch(function (gfgData) {
             console.log(gfgData + ' failed to load!');

@@ -155,17 +155,17 @@ Promise.customRace = function (promises = []) {
   });
 };
 
-const firstPromise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve("first promise resolved..");
-  }, 1000);
-});
+// const firstPromise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     resolve("first promise resolved..");
+//   }, 1000);
+// });
 
-const secondPromise = new Promise((resolve, reject) => {
-  reject("second promise resolved..");
-});
+// const secondPromise = new Promise((resolve, reject) => {
+//   reject("second promise resolved..");
+// });
 
-const thirdPromise = 1;
+// const thirdPromise = 1;
 
 // Promise.customAll([firstPromise, secondPromise])
 //   .then((val) => console.log(val))
