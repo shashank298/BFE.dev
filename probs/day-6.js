@@ -203,31 +203,31 @@ const json = {
 
 // Get nodes of same color
 
-const getComputedColor = (color) => {
-    const div = document.createElement("div");
-    div.style.color = color;
-    document.body.appendChild(div);
-    const computedStyles = window.getComputedStyle(div);
-    const { color: computedColor } = computedStyles;
-    return computedColor;
-  };
+// const getComputedColor = (color) => {
+//     const div = document.createElement("div");
+//     div.style.color = color;
+//     document.body.appendChild(div);
+//     const computedStyles = window.getComputedStyle(div);
+//     const { color: computedColor } = computedStyles;
+//     return computedColor;
+//   };
   
-  const findElementByColor = (root, color) => {
-    const computedColor = getComputedColor(color);
-    const results = [];
-    const helper = (el) => {
-      const computedElColor = getComputedColor(el.style["color"]);
-      if (computedElColor === computedColor) {
-        results.push(el);
-      }
+//   const findElementByColor = (root, color) => {
+//     const computedColor = getComputedColor(color);
+//     const results = [];
+//     const helper = (el) => {
+//       const computedElColor = getComputedColor(el.style["color"]);
+//       if (computedElColor === computedColor) {
+//         results.push(el);
+//       }
   
-      for (let child of el.children) {
-        helper(child);
-      }
-    };
-    helper(root);
-    return results;
-  };
+//       for (let child of el.children) {
+//         helper(child);
+//       }
+//     };
+//     helper(root);
+//     return results;
+//   };
   
-  const root = document.getElementById("root");
+  // const root = document.getElementById("root");
   // console.log(findElementByColor(root, "black"));

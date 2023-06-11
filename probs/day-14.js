@@ -1,4 +1,4 @@
-const input = [2, 2, 2, 2, 2, 2];
+// const input = [2, 2, 2, 2, 2, 2];
 
 const subArrSize = 2;
 
