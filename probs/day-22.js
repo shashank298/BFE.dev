@@ -69,3 +69,58 @@ function getLongestSubArray(
 }
 
 // console.log(getLongestSubArray());
+
+// const input = [2,0,2,1,1,0]
+
+function swapElements(index1, index2, arr){
+	const temp = arr[index1]
+  arr[index1] = arr[index2]
+  arr[index2] = temp
+	return arr
+}
+
+function sortArr(arr){
+
+	let left = 0
+  let right = arr.length-1
+  let pointer = 0
+  
+  while(pointer<=right){
+  
+  	if(arr[pointer] === 0){
+    	arr = swapElements(left, pointer, arr)
+      left++;
+      pointer++;
+		}else if(arr[pointer] === 1){
+      pointer++;
+		}else{
+    	arr = swapElements(right, pointer, arr)
+      right--;
+		}
+    console.log(arr,left,pointer,right)
+  }
+  
+  return arr
+}
+// console.log(sortArr(input))
+
+// const input1 = [2,2,1,1,1,2,2]
+
+function findMajorityEl(arr=[]){
+
+	let currentEl
+  let count=0
+  for(let i=0;i<arr.length;i++){
+  	if(count === 0){
+    	currentEl = arr[i]
+      count = 1
+    }else if(arr[i] === currentEl){
+    	count++
+    }else{
+    	count--;
+		}
+    console.log({count, currentEl})
+  }
+  return currentEl
+}
+// console.log(findMajorityEl(input1))
