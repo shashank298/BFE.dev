@@ -124,3 +124,27 @@ function findMajorityEl(arr=[]){
   return currentEl
 }
 // console.log(findMajorityEl(input1))
+
+// const input = [-1, -4, -5]
+
+function MaxSubarray(arr=[]){
+	let sum=0;
+  let maxSum = Number.NEGATIVE_INFINITY
+  for(let i=0;i<arr.length;i++){
+  	sum = sum + arr[i]
+    
+    if(sum < 0){
+    		if(arr[i] >= sum){
+        	maxSum = Math.max(maxSum,sum)
+        }
+      	sum=0
+    }else{
+    	maxSum = Math.max(maxSum,sum)
+		} 
+	}
+  
+  return maxSum;
+  
+}
+
+// console.log(MaxSubarray(input))
