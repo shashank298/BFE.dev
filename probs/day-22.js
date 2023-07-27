@@ -207,3 +207,21 @@ function buyAndSellStocks(arr = []) {
     min: arr[minIdx]
   })
 }
+
+// const input = [1,2,-3,-4]
+
+function reArrangeOrder(arr=[]){
+	if(arr.length<4) return arr
+	let left = 0
+  let right= Math.floor(arr.length/2);
+  const temp = []
+  
+ for(let i=0;i<arr.length/2;i++){
+ 		temp.push(arr[left+i])
+ 		temp.push(arr[right+i])
+	}
+  
+  return temp;  
+}
+
+// console.log(reArrangeOrder(input))
