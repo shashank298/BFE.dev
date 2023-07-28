@@ -225,3 +225,24 @@ function reArrangeOrder(arr=[]){
 }
 
 // console.log(reArrangeOrder(input))
+
+// Problem Statement:** Given an array arr[] of integers, you need to return the product of given array elements except including the element itself.
+function productOfArray(arr=[]){
+  let prefix=[];
+  let product=[];
+  
+  prefix[0]=1; // since first element can have no prefix
+  for(let i=1;i<arr.length;i++)
+  {
+      prefix[i]=prefix[i-1]*arr[i-1];
+  }
+  
+  let suffixProduct=1;
+  // Building Product array and maintaining suffix product
+  for(let i=arr.length-1;i>=0;i--)
+  {
+      product[i]=suffixProduct*prefix[i];
+      suffixProduct*=arr[i];
+  }
+  console.log(product)
+}
