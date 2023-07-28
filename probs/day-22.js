@@ -246,3 +246,48 @@ function productOfArray(arr=[]){
   }
   console.log(product)
 }
+
+
+// const input = [1,5,6,4,3,2,1]
+
+// 1,2,3
+// 1,3,2
+// 2,1,3
+// 2,3,1
+// 3,1,2
+// 3,2,1
+
+// 1. Find largest prefix match (find el[ind] < el[ind+1])
+// 2. Find the least among the rest of elements
+// 3. sort the rest in ascending 
+
+function findNextPermutation(arr){
+	let index = -1
+  // step1 
+	for(let i=arr.length-2;i>=0;i--){
+  	if(arr[i] < arr[i+1]){
+    	index = i;
+      break;
+    }
+  }
+  
+  if(index === -1){
+  	return;
+	}
+  
+  // step2
+  for(let i=arr.length-1;i>index;i--){
+  	if(arr[i] > arr[index]){
+    	const temp = arr[i]
+      arr[i] = arr[index]
+      arr[index] = temp
+    }
+  }
+  
+  // step3
+  arr.splice(index+1, arr.length-index-1, ...arr.slice(index+1).reverse())
+  
+  return arr
+}
+
+// console.log(findNextPermutation(input))
