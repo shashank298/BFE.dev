@@ -46,3 +46,144 @@ function findLongestConsecutiveSubSequence(arr=[]){
     }
     console.log({counter, maxCount})
   }
+
+
+
+
+//   const input = [
+//     [1, 1, 1, 1],
+//     [1, 0, 1, 1],
+//     [1, 1, 0, 1],
+//     [0, 1, 1, 1]
+//   ]
+  
+  function setMatrixZero(matrix = []) {
+    
+    // Better Approach -> Iterate through the matrix and use rows & cols array for lookup for rows and columns
+    // space - m*n
+    // time 2(m*n)
+
+    let rows = [...new Array(matrix.length)].map(() => 1)
+    let cols = [...new Array(matrix[0].length)].map(() => 1)
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          if (matrix[i][j] === 0) {
+            rows[i] = 0
+            cols[j] = 0
+          }
+        }
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          if (rows[i] === 0 || cols[j] === 0) {
+           matrix[i][j] = 0
+          }
+        }
+    }
+
+
+    // Optimal solution - use same better approach but rather than using extra space for rows & cols, use rows & cols as first row & col of matrix
+    // rows = [...new Array(matrix.length)].map(() => 1) => matrix[...][0]
+    // cols = [...new Array(matrix[0].length)].map(() => 1) => matrix[0][...]
+    // space - 1
+    // time 2(m*n)
+
+    let col0 = 1
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[0].length; j++) {
+        if (matrix[i][j] === 0) {
+          if (j == 0) {
+            col0 = 0
+          } else {
+            matrix[0][j] = 0
+          }
+          matrix[i][0] = 0
+        }
+      }
+    }
+  
+    for (let i = 1; i < matrix.length; i++) {
+      for (let j = 1; j < matrix[0].length; j++) {
+        if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+          matrix[i][j] = 0
+        }
+      }
+    }
+  
+    if (matrix[0][0] === 0) {
+      for (let j = 1; j < matrix[0].length; j++) matrix[0][j] = 0
+    }
+  
+    if (col0 === 0) {
+      for (let i = 0; i < matrix.length; i++) matrix[i][0] = 0
+    }
+  
+    console.log(matrix)
+  }
+  
+
+
+//   const input = [
+//     [1, 2, 3, 4],
+//     [5, 6, 7, 8],
+//     [9, 10, 11, 12],
+//     [13, 14, 15, 16]
+//   ];
+  
+  function printSpiraTraversal(matrix = []) {
+    while (matrix.length) {
+      // print top most row
+  
+      if (matrix.length) {
+        const firstRow = matrix.shift();
+        while (firstRow.length) console.log(firstRow.shift());
+      }
+  
+      // print right col
+      for (let i = 0; i < matrix.length; i++) {
+        console.log(matrix[i].pop());
+      }
+  
+      // print bottom row
+      if (matrix.length) {
+        const lastRow = matrix.pop();
+        while (lastRow.length) console.log(lastRow.pop());
+      }
+  
+      // print left col
+      for (let i = matrix.length - 1; i >= 0; i--) {
+        console.log(matrix[i].shift());
+      }
+    }
+  }
+  
+//   printSpiraTraversal(input);
+
+function countSubArrays(arr=[], sum){
+
+	let left = 0
+  let right = 1
+	let count = arr[left]
+  let totalOccurrences = 0
+  
+  while(right<=arr.length){
+  	
+    while(count > sum){
+    	count = count - arr[left]
+      left++;
+		}
+    
+    if(count === sum){
+    	totalOccurrences += 1
+    }
+    
+    
+    
+    count = count + arr[right]
+    
+    right++;
+	}
+  console.log({totalOccurrences})
+}
