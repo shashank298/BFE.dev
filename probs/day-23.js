@@ -46,3 +46,80 @@ function findLongestConsecutiveSubSequence(arr=[]){
     }
     console.log({counter, maxCount})
   }
+
+
+
+
+//   const input = [
+//     [1, 1, 1, 1],
+//     [1, 0, 1, 1],
+//     [1, 1, 0, 1],
+//     [0, 1, 1, 1]
+//   ]
+  
+  function setMatrixZero(matrix = []) {
+    
+    // Better Approach -> Iterate through the matrix and use rows & cols array for lookup for rows and columns
+    // space - m*n
+    // time 2(m*n)
+
+    let rows = [...new Array(matrix.length)].map(() => 1)
+    let cols = [...new Array(matrix[0].length)].map(() => 1)
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          if (matrix[i][j] === 0) {
+            rows[i] = 0
+            cols[j] = 0
+          }
+        }
+    }
+
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[0].length; j++) {
+          if (rows[i] === 0 || cols[j] === 0) {
+           matrix[i][j] = 0
+          }
+        }
+    }
+
+
+    // Optimal solution - use same better approach but rather than using extra space for rows & cols, use rows & cols as first row & col of matrix
+    // rows = [...new Array(matrix.length)].map(() => 1) => matrix[...][0]
+    // cols = [...new Array(matrix[0].length)].map(() => 1) => matrix[0][...]
+    // space - 1
+    // time 2(m*n)
+
+    let col0 = 1
+    for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[0].length; j++) {
+        if (matrix[i][j] === 0) {
+          if (j == 0) {
+            col0 = 0
+          } else {
+            matrix[0][j] = 0
+          }
+          matrix[i][0] = 0
+        }
+      }
+    }
+  
+    for (let i = 1; i < matrix.length; i++) {
+      for (let j = 1; j < matrix[0].length; j++) {
+        if (matrix[i][0] === 0 || matrix[0][j] === 0) {
+          matrix[i][j] = 0
+        }
+      }
+    }
+  
+    if (matrix[0][0] === 0) {
+      for (let j = 1; j < matrix[0].length; j++) matrix[0][j] = 0
+    }
+  
+    if (col0 === 0) {
+      for (let i = 0; i < matrix.length; i++) matrix[i][0] = 0
+    }
+  
+    console.log(matrix)
+  }
+  
