@@ -160,3 +160,30 @@ function findLongestConsecutiveSubSequence(arr=[]){
   }
   
 //   printSpiraTraversal(input);
+
+function countSubArrays(arr=[], sum){
+
+	let left = 0
+  let right = 1
+	let count = arr[left]
+  let totalOccurrences = 0
+  
+  while(right<=arr.length){
+  	
+    while(count > sum){
+    	count = count - arr[left]
+      left++;
+		}
+    
+    if(count === sum){
+    	totalOccurrences += 1
+    }
+    
+    
+    
+    count = count + arr[right]
+    
+    right++;
+	}
+  console.log({totalOccurrences})
+}
