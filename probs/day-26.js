@@ -79,6 +79,44 @@ const SDK = function () {
   };
 };
 
+class SDKClass{
+  constructor(){
+    this.logs = [];
+    this.count = 1;
+  }
+  
+  log = function (event) {
+    this.logs.push(event);
+  };
+  
+  wait = () =>
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (this.count % 5 === 0) {
+          reject("Error because of count");
+        }
+        resolve();
+      }, 1000);
+    });
+  
+  sendAnalytics = async function (func) {
+    if (!this.logs.length) return;
+    const currEvent = this.logs.shift();
+    try {
+      await this.wait();
+      func(currEvent);
+      this.count++;
+    } catch (error) {
+      console.error(error);
+      this.logs.unshift(currEvent);
+      this.count = 1;
+    } finally {
+      this.sendAnalytics(func);
+    }
+  };
+
+};
+
 const sdk = new SDK()
 sdk.log("1")
 sdk.log("2")
