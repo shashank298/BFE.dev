@@ -88,5 +88,35 @@ function mergeTwoSortedArrays(arr1, arr2) {
 
 // mergeTwoSortedArrays(arr1, arr2)
 
+// Find the repeating and missing numbers
+// const input = [3,1,2,5,3]
+
+function findMissing(arr){
+  const n = arr.length
+  const sumN = n*(n+1)/2
+  const sum2N = n*(n+1)*(2*n+1)/6
+  let sum= 0;
+  let sum2 = 0
   
+  for(let i=0;i<arr.length;i++){
+  	sum=sum+arr[i]
+    sum2 = sum2+Math.pow(arr[i],2)
+  }
+  
+  const val1 = sum - sumN //x-y
+  let val2 = sum2 - sum2N // x2-y2 => (x+y)(x-y)
+  
+  val2 = val2/val1 //x+y
+  
+  const x = (val1+val2)/2
+  const y = val2-x
+  
+  
+  
+  console.log({x, y})
+}
+
+// findMissing(input)
+
+
   
